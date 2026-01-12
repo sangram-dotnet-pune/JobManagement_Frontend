@@ -1,0 +1,12 @@
+<div class="sidebar">
+  <ul>
+    <li
+      *ngFor="let item of sidebarItems"
+      (click)="navigate(item)"
+      [class.active]="item.route && isActive(item.route)"
+    >
+      <span class="icon">{{ item.icon }}</span>
+      <span class="label">{{ item.label }}</span>
+    </li>
+  </ul>
+</div>

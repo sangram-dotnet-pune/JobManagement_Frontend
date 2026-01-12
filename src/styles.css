@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #0CAA41;
+  --primary-hover: #08913A;
+  --primary-light: #E6F6EC;
+
+  --secondary: #0A66C2;
+
+  --bg-main: #F4F7F9;
+  --bg-card: #FFFFFF;
+  --bg-navbar: #FFFFFF;
+  --bg-sidebar: #F9FAFB;
+
+  --text-primary: #1F2937;
+  --text-secondary: #4B5563;
+  --text-muted: #9CA3AF;
+
+  --border-color: #E5E7EB;
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #F4F7F9;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}

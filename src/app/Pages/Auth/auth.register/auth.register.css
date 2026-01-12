@@ -1,0 +1,141 @@
+
+/* Page wrapper */
+.auth-wrapper {
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Register Card */
+.register-card {
+  width: 420px;
+  padding: 32px 36px;
+  background: var(--bg-card);
+
+  border-radius: 14px;
+  position: relative;
+
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+}
+
+/* Left accent strip */
+.register-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: var(--primary);
+  border-radius: 14px 0 0 14px;
+}
+
+/* Title */
+.register-card h2 {
+  text-align: left;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 18px;
+}
+
+/* Labels */
+label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  outline: none;
+
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  border-color: var(--primary);
+}
+
+/* Validation messages */
+small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--error);
+}
+
+/* Primary button */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+
+  background: var(--primary);
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 6px 14px rgba(12, 170, 65, 0.25);
+}
+
+.btn-primary:disabled {
+  background: #C7E8D3;
+  cursor: not-allowed;
+}
+
+/* Success message */
+.success {
+  color: var(--success);
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Info message */
+.info {
+  color: var(--text-muted);
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .register-card {
+    width: 100%;
+    margin: 0 16px;
+    padding: 28px;
+  }
+}

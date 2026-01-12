@@ -1,0 +1,37 @@
+<nav class="navbar">
+  <div class="navbar-left">
+    <span class="logo">JobPortal</span>
+  </div>
+
+  <div class="navbar-right">
+    <!-- Before login -->
+    <ng-container *ngIf="!authService.isLoggedIn()">
+      <a
+        routerLink="/login"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-btn outline"
+      >
+        Login
+      </a>
+
+      <a
+        routerLink="/register"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-btn"
+      >
+        Register
+      </a>
+    </ng-container>
+
+    <!-- After login -->
+    <ng-container *ngIf="authService.isLoggedIn()">
+      <button class="nav-btn logout" (click)="logout()">
+        Logout
+      </button>
+    </ng-container>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

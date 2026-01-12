@@ -1,0 +1,31 @@
+<div class="job-card">
+
+  <div class="job-header">
+    <h3>{{ job.title }}</h3>
+    <span class="status" [ngClass]="job.status.toLowerCase()">{{ job.status }}</span>
+  </div>
+
+  <p class="description">
+    {{ job.description }}
+  </p>
+
+  <div class="job-details">
+    <span>📍 {{ job.location }}</span>
+    <span>💼 {{ job.employmentType }}</span>
+    <span>📈 {{ job.experienceLevel }}</span>
+  </div>
+
+  <div class="salary">
+    💰 {{ job.salaryMin | currency:'INR' }} - {{ job.salaryMax | currency:'INR' }}
+  </div>
+
+  <div class="footer">
+    <small>
+      Posted by {{ job.createdBy.fullName }} • {{ job.createdAt | date:'mediumDate' }}
+    </small>
+  </div>
+
+  <div class="actions">
+    <button class="apply-btn">Apply</button>
+  </div>
+</div>
