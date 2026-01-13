@@ -8,7 +8,7 @@
 /* Right content area */
 .dashboard-content {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: repeat(2, 1fr); */
   gap: 24px;
   padding: 16px 24px 24px 24px; /* top smaller, bottom normal */
   background-color: var(--bg-main);

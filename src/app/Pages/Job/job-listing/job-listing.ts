@@ -25,17 +25,19 @@ locationTerm: string = '';
     this.loadJobs();
   }
 
-  loadJobs() {
-    this.jobService.getAllJobs().subscribe({
-      next: (jobs: Job[]) => {
-        this.jobs.set(jobs);
-        this.isLoading.set(false);
-      },
-      error: () => {
-        this.isLoading.set(false);
-      }
-    });
-  }
+loadJobs() {
+  this.jobService.getAllJobs().subscribe({
+    next: (jobs: Job[]) => {
+      this.jobs.set(jobs);
+      this.filteredJobs = jobs; // ✅ show all jobs initially
+      this.isLoading.set(false);
+    },
+    error: () => {
+      this.isLoading.set(false);
+    }
+  });
+}
+
 
   trackByJobId(index: number, job: Job) {
     return job.id;
@@ -47,10 +49,19 @@ filterJobs() {
   const term = this.searchTerm.toLowerCase().trim();
   const location = this.locationTerm.toLowerCase().trim();
 
-  this.filteredJobs = this.jobs().filter((job) =>
-    (job.title.toLowerCase().includes(term) ||
-     job.description.toLowerCase().includes(term)) &&
-    job.location?.toLowerCase().includes(location)
+
+  if (!term && !location) {
+    this.filteredJobs = this.jobs();
+    return;
+  }
+
+  this.filteredJobs = this.jobs().filter(job =>
+    (
+      job.title.toLowerCase().includes(term) ||
+      job.description.toLowerCase().includes(term)
+    ) &&
+    (!location || job.location?.toLowerCase().includes(location))
   );
 }
+
 }
