@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Job } from '../../../Interface/Job/Job';
+import { UserSummary } from '../../../Interface/Job/UserSummary';   
 
 @Injectable({
   providedIn: 'root',
 })
-export class JobApiService {
+export class UserApiService {
   
 
   
@@ -15,8 +15,8 @@ export class JobApiService {
 
 
 
-    getAllJobs() : Observable<Job []> {
-    return this.http.get<Job[]>('http://localhost:5055/api/Job');
+    getProfile():Observable<UserSummary>{
+    return this.http.get<UserSummary>('http://localhost:5055/api/User/profile');
   }
   
 }
