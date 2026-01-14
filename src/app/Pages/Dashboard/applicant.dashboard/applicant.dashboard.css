@@ -1,20 +1,14 @@
 
-/* Main layout */
+
 .dashboard-container {
   display: flex;
-  background-color: var(--bg-main);
 }
 
-/* Right content area */
+.sidebar {
+  width: 250px; /* Example fixed width */
+  flex-shrink: 0;
+}
+
 .dashboard-content {
-  display: grid;
-  /* grid-template-columns: repeat(2, 1fr); */
-  gap: 24px;
-  padding: 16px 24px 24px 24px; /* top smaller, bottom normal */
-  background-color: var(--bg-main);
-  min-height: calc(100vh - 64px); /* navbar height */
-  overflow-y: auto;
+  flex-grow: 1; /* This ensures the dashboard takes up the remaining space */
 }
-
-
-

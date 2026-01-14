@@ -6,6 +6,7 @@ import { AuthRegister } from './Pages/Auth/auth.register/auth.register';
 import { ApplicantDashboard } from './Pages/Dashboard/applicant.dashboard/applicant.dashboard';
 import { JobListing } from './Pages/Job/job-listing/job-listing';
 import { ApplicantProfile } from './Pages/Dashboard/applicant.profile/applicant.profile';
+import { JobApplication } from './Pages/Job/job-application/job.application/job.application';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: AuthLogin },
@@ -17,5 +18,6 @@ export const routes: Routes = [
       {path: 'profile',component:ApplicantProfile},
      
     ]
-    }
+    },
+    { path: 'apply/:id', component: JobApplication }
 ];

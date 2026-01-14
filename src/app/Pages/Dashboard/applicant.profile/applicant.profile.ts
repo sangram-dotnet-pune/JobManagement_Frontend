@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserApiService } from '../../../core/Services/api.Service/User.api.Service/user.api.service';
+import { UserSummary } from '../../../core/Interface/Job/UserSummary';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { UserApiService } from '../../../core/Services/api.Service/User.api.Serv
 })
 export class ApplicantProfile implements OnInit {
 
-  profile: any;
+  profile: UserSummary=null!;
   loading = true;
   errorMessage = '';
 
@@ -27,6 +28,7 @@ export class ApplicantProfile implements OnInit {
       next: (res) => {
         this.profile = res;
         this.loading = false;
+        console.log(this.profile);
       },
       error: () => {
         this.errorMessage = 'Unable to load profile details';

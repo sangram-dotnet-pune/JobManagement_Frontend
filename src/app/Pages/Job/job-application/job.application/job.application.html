@@ -1,0 +1,48 @@
+<div class="apply-page-container">
+  
+  @if (isLoading()) {
+    <div class="loader">Fetching job details...</div>
+  }
+
+  @if (job(); as jobData) {
+    <div class="glass-form-card">
+      
+      <header class="job-info-header">
+        <div class="header-row">
+          <h1>{{ jobData.title }}</h1>
+          <span class="badge open">{{ jobData.status }}</span>
+        </div>
+        <p class="meta-text">📍 {{ jobData.location }} | 💼 {{ jobData.employmentType }}</p>
+        
+        <div class="description-box">
+          <h4>Job Description</h4>
+          <p>{{ jobData.description }}</p>
+        </div>
+        
+        <div class="salary-tag">
+          Expected: {{ jobData.salaryMin | currency:'INR' }} - {{ jobData.salaryMax | currency:'INR' }}
+        </div>
+      </header>
+
+      <hr class="divider">
+
+      <section class="application-form">
+        <h3>Submit your application</h3>
+        <form>
+          <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your name">
+          </div>
+          <div class="input-group">
+            <label>Resume Link / Portfolio</label>
+            <input type="url" placeholder="https://...">
+          </div>
+          <button type="submit" class="submit-action-btn">Submit Application</button>
+        </form>
+      </section>
+
+    </div>
+  } @else if (!isLoading() && !job()) {
+    <div class="error-msg">Job not found or has been closed.</div>
+  }
+</div>
