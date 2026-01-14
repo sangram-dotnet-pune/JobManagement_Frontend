@@ -18,5 +18,9 @@ export class JobApiService {
     getAllJobs() : Observable<Job []> {
     return this.http.get<Job[]>('http://localhost:5055/api/Job');
   }
+
+  getJobById(id: string): Observable<Job> {
+    return this.http.get<Job>(`http://localhost:5055/api/Job/${id}`);
+  }
   
 }

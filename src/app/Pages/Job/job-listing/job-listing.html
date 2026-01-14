@@ -15,13 +15,13 @@
   />
 </div>
 
-<!-- Loading State -->
+
 <div *ngIf="isLoading()" class="job-state loading">
   <span class="spinner"></span>
   <p>Loading jobs...</p>
 </div>
 
-<!-- Empty State -->
+
 <div *ngIf="!isLoading() && filteredJobs.length === 0" class="job-state empty">
   <h3>No jobs found</h3>
   <p>Try different keywords or check back later.</p>
