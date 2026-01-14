@@ -7,6 +7,26 @@
     <h2>Create Your Account</h2>
     <p class="subtitle">Join JobPortal and apply for jobs faster</p>
 
+
+
+    <div class="role-toggle-container">
+      <button 
+        type="button" 
+        class="toggle-btn" 
+        [class.active]="selectedRole() === 1" 
+        (click)="setRole(1)">
+        Applicant
+      </button>
+      <button 
+        type="button" 
+        class="toggle-btn" 
+        [class.active]="selectedRole() === 2" 
+        (click)="setRole(2)">
+        HR / Recruiter
+      </button>
+    </div>
+
+    
     <div class="form-group">
       <label>Name</label>
       <input type="text" formControlName="name" placeholder="Enter your name" />

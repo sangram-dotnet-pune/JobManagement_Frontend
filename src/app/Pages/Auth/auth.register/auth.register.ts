@@ -14,7 +14,7 @@ export class AuthRegister {
 
 
   constructor(private authService: AuthService,private router: Router){}
-
+selectedRole = signal<number>(1);
 isRegistered = signal<boolean>(false);
    registerForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -31,7 +31,7 @@ isRegistered = signal<boolean>(false);
       this.registerForm.value.email,
       this.registerForm.value.password,
       this.registerForm.value.phone,
-      1
+      this.selectedRole()
     ).subscribe({
       next: (response) => {
         console.log('Registration successful:', response);
@@ -46,5 +46,11 @@ isRegistered = signal<boolean>(false);
         console.error('Registration failed:', error);
       }
     });
+  }
+
+
+
+  setRole(role: number) {
+    this.selectedRole.set(role);
   }
 }

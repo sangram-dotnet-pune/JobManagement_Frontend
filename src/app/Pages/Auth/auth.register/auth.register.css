@@ -139,3 +139,46 @@ small {
     padding: 28px;
   }
 }
+
+
+/* Container for the toggle */
+.role-toggle-container {
+  display: flex;
+  background-color: #f0f2f5; /* Light grey background */
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 25px;
+  border: 1px solid #e0e0e0;
+}
+
+/* Individual toggle buttons */
+.toggle-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: #666;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+/* Active state - matches your btn-primary theme */
+.toggle-btn.active {
+  background-color: #ffffff; /* Or use your primary color */
+  color: #007bff; /* Change this to your theme's primary color */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.toggle-btn:hover:not(.active) {
+  background-color: #e8eaed;
+}
+
+/* Success message styling */
+.success {
+  color: #28a745;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 500;
+}
