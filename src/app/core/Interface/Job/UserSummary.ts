@@ -1,7 +1,7 @@
 export interface UserSummary {
   id: number;
-  fullName: string;
-  phoneNumber: string;
+  full_name: string;
+  phone: string;
   email: string;
-  Role: string;
+  role: string;
 }
