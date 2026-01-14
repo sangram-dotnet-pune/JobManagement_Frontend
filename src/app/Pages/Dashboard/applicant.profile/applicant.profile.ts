@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserApiService } from '../../../core/Services/api.Service/User.api.Service/user.api.service';
 import { UserSummary } from '../../../core/Interface/Job/UserSummary';
-
 
 @Component({
   selector: 'app-applicant-profile',
@@ -13,26 +12,27 @@ import { UserSummary } from '../../../core/Interface/Job/UserSummary';
 })
 export class ApplicantProfile implements OnInit {
 
-  profile: UserSummary=null!;
-  loading = true;
-  errorMessage = '';
+ 
+  profile = signal<UserSummary | null>(null);
+  loading = signal<boolean>(true);
+  errorMessage = signal<string>('');
 
-  constructor(private UserApiService: UserApiService) {}
+  constructor(private userApiService: UserApiService) {}
 
   ngOnInit(): void {
     this.getProfile();
   }
 
   getProfile(): void {
-    this.UserApiService.getProfile().subscribe({
+    this.userApiService.getProfile().subscribe({
       next: (res) => {
-        this.profile = res;
-        this.loading = false;
-        console.log(this.profile);
+        this.profile.set(res);          
+        this.loading.set(false);
+        console.log(this.profile());
       },
       error: () => {
-        this.errorMessage = 'Unable to load profile details';
-        this.loading = false;
+        this.errorMessage.set('Unable to load profile details');
+        this.loading.set(false);
       }
     });
   }

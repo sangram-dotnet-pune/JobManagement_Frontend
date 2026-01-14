@@ -1,15 +1,15 @@
 <!-- Loader -->
-<div class="profile-container" *ngIf="loading">
+<div class="profile-container" *ngIf="loading()">
   <p class="loading-text">Loading profile...</p>
 </div>
 
 <!-- Error -->
-<div class="profile-container" *ngIf="!loading && errorMessage">
-  <p class="error-text">{{ errorMessage }}</p>
+<div class="profile-container" *ngIf="!loading() && errorMessage()">
+  <p class="error-text">{{ errorMessage() }}</p>
 </div>
 
 <!-- Profile Details -->
-<div class="profile-container">
+<div class="profile-container" *ngIf="!loading() && profile()">
 
   <h2 class="profile-title">My Profile</h2>
 
@@ -17,22 +17,22 @@
 
     <div class="profile-row">
       <span class="label">Full Name</span>
-      <span class="value">{{ profile?.full_name }}</span>
+      <span class="value">{{ profile()?.full_name }}</span>
     </div>
 
     <div class="profile-row">
       <span class="label">Email</span>
-      <span class="value">{{ profile?.email || '' }}</span>
+      <span class="value">{{ profile()?.email || '' }}</span>
     </div>
 
     <div class="profile-row">
       <span class="label">Phone</span>
-      <span class="value">{{ profile?.phone || 'N/A' }}</span>
+      <span class="value">{{ profile()?.phone || 'N/A' }}</span>
     </div>
 
     <div class="profile-row">
       <span class="label">Role</span>
-      <span class="value">{{ profile?.role || '' }}</span>
+      <span class="value">{{ profile()?.role || '' }}</span>
     </div>
 
   </div>
