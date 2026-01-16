@@ -1,0 +1,67 @@
+.applied-container {
+  padding: 24px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.state-msg {
+  text-align: center;
+  color: #475569;
+  margin-top: 40px;
+  font-size: 15px;
+}
+
+.state-msg.error {
+  color: #dc2626;
+}
+
+/* Job Card – SAME STYLE AS JOB LIST */
+.job-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.job-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #1e293b;
+}
+
+.meta {
+  color: #64748b;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.salary {
+  font-weight: bold;
+  color: #0f172a;
+  margin: 6px 0;
+}
+
+/* Status Badge */
+.status-badge {
+  background: #ecfdf5;
+  color: #059669;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.applied-date {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #94a3b8;
+}

@@ -1,0 +1,41 @@
+<div class="applied-container">
+
+  <!-- Loading -->
+  <div class="state-msg" *ngIf="loading()">
+    Loading applied jobs...
+  </div>
+
+  <!-- Error -->
+  <div class="state-msg error" *ngIf="!loading() && errorMessage()">
+    {{ errorMessage() }}
+  </div>
+
+  <!-- Empty -->
+  <div class="state-msg" *ngIf="!loading() && appliedJobs().length === 0">
+    You have not applied to any jobs yet.
+  </div>
+
+  <!-- Applied Jobs List -->
+  <div class="job-card" *ngFor="let job of appliedJobs()">
+
+    <div class="job-header">
+      <h3>{{ job.jobTitle }}</h3>
+      <span class="status-badge">{{ job.status }}</span>
+    </div>
+
+    <p class="meta">
+      📍 {{ job.location }} &nbsp; | &nbsp;
+      💼 {{ job.employmentType }}
+    </p>
+
+    <p class="salary">
+      ₹{{ job.minSalary }} - ₹{{ job.maxSalary }}
+    </p>
+
+    <small class="applied-date">
+      Applied on {{ job.appliedAt | date:'mediumDate' }}
+    </small>
+
+  </div>
+
+</div>

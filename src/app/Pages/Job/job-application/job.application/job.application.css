@@ -1,5 +1,5 @@
 .apply-page-container {
-  background-color: #f8fafc; /* Very light blue-gray */
+  background-color: #f8fafc;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -25,7 +25,7 @@
 .badge.open {
   font-size: 12px;
   font-weight: bold;
-  color: #059669; /* Green text */
+  color: #059669;
   background: #ecfdf5;
   padding: 4px 12px;
   border-radius: 20px;
@@ -58,7 +58,7 @@
 
 .submit-action-btn {
   width: 100%;
-  background-color: #007bff; /* Matching your Apply button */
+  background-color: #007bff;
   color: white;
   padding: 14px;
   border: none;
@@ -66,4 +66,27 @@
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
+}
+/* Center the application form */
+.application-form {
+  display: flex;
+  justify-content: center;
+}
+
+/* Medium width form */
+.application-form-center {
+  width: 100%;
+  max-width: 420px;   /* ✅ medium size */
+}
+
+/* Medium-sized inputs */
+.application-form-center .input-group input {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Center submit button */
+.application-form-center .submit-action-btn {
+  max-width: 420px;
+  margin: 0 auto;
 }

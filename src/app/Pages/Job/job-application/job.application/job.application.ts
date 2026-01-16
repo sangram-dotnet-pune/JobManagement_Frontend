@@ -1,7 +1,8 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Job } from '../../../../core/Interface/Job/Job';
 import { JobApiService } from '../../../../core/Services/api.Service/Job.api.Service/job.api.service';
+import { ApplicationApiService } from '../../../../core/Services/api.Service/Application.api.Service/application.api.service';
 import { CurrencyPipe, CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -13,9 +14,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './job.application.css',
 })
 export class JobApplication implements OnInit {
-  // Define Signals
+
   job = signal<Job | null>(null);
-  isLoading = signal<boolean>(true);
+  isLoading = signal(true);
   errorMessage = signal<string | null>(null);
 
   applyForm: FormGroup;
@@ -23,13 +24,18 @@ export class JobApplication implements OnInit {
   constructor(
     private router: Router,
     private jobService: JobApiService,
+    private applicationService: ApplicationApiService,
     private activeRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {
-    // Initialize the form
+    // ✅ ALL REQUIRED FIELDS
     this.applyForm = this.fb.group({
       applicantName: ['', Validators.required],
       applicantEmail: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      address: ['', Validators.required],
+      graduationYear: ['', Validators.required],
+      qualification: ['', Validators.required],
       resumeLink: ['', Validators.required],
       coverLetter: ['']
     });
@@ -41,11 +47,10 @@ export class JobApplication implements OnInit {
     if (jobId) {
       this.jobService.getJobById(jobId).subscribe({
         next: (data) => {
-          this.job.set(data); // Updating the signal
+          this.job.set(data);
           this.isLoading.set(false);
         },
-        error: (err) => {
-          console.error('Error fetching job', err);
+        error: () => {
           this.errorMessage.set('Could not load job details.');
           this.isLoading.set(false);
         }
@@ -53,14 +58,31 @@ export class JobApplication implements OnInit {
     }
   }
 
-  onSubmitApplication() {
-    if (this.applyForm.valid) {
-      const applicationData = {
-        jobId: this.job()?.id,
-        ...this.applyForm.value
-      };
-      console.log('Submitting Application:', applicationData);
-      // Call your submission service here
-    }
+  onSubmitApplication(): void {
+    if (this.applyForm.invalid || !this.job()) return;
+
+    // ✅ PAYLOAD MATCHES BACKEND DTO EXACTLY
+    const payload = {
+      jobId: this.job()!.id,
+      applicantName: this.applyForm.value.applicantName,
+      applicantEmail: this.applyForm.value.applicantEmail,
+      phone: this.applyForm.value.phone,
+      address: this.applyForm.value.address,
+      graduationYear: Number(this.applyForm.value.graduationYear),
+      qualification: this.applyForm.value.qualification,
+      resumeLink: this.applyForm.value.resumeLink,
+      coverLetter: this.applyForm.value.coverLetter
+    };
+
+    this.applicationService.applyJob(payload).subscribe({
+      next: () => {
+        // ✅ CORRECT ROUTE (matches your app.routes.ts)
+        this.router.navigate(['/applicantDashboard/applied']);
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Failed to apply for job. Please check details or try again.');
+      }
+    });
   }
 }

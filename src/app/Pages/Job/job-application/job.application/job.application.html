@@ -1,48 +1,57 @@
-<div class="apply-page-container">
-  
-  @if (isLoading()) {
-    <div class="loader">Fetching job details...</div>
-  }
+<section class="application-form">
 
-  @if (job(); as jobData) {
-    <div class="glass-form-card">
-      
-      <header class="job-info-header">
-        <div class="header-row">
-          <h1>{{ jobData.title }}</h1>
-          <span class="badge open">{{ jobData.status }}</span>
-        </div>
-        <p class="meta-text">📍 {{ jobData.location }} | 💼 {{ jobData.employmentType }}</p>
-        
-        <div class="description-box">
-          <h4>Job Description</h4>
-          <p>{{ jobData.description }}</p>
-        </div>
-        
-        <div class="salary-tag">
-          Expected: {{ jobData.salaryMin | currency:'INR' }} - {{ jobData.salaryMax | currency:'INR' }}
-        </div>
-      </header>
+  <div class="application-wrapper">
 
-      <hr class="divider">
+    <h3 class="form-title">Submit your application</h3>
 
-      <section class="application-form">
-        <h3>Submit your application</h3>
-        <form>
-          <div class="input-group">
-            <label>Full Name</label>
-            <input type="text" placeholder="Enter your name">
-          </div>
-          <div class="input-group">
-            <label>Resume Link / Portfolio</label>
-            <input type="url" placeholder="https://...">
-          </div>
-          <button type="submit" class="submit-action-btn">Submit Application</button>
-        </form>
-      </section>
+    <form
+      class="application-form-center"
+      [formGroup]="applyForm"
+      (ngSubmit)="onSubmitApplication()">
 
-    </div>
-  } @else if (!isLoading() && !job()) {
-    <div class="error-msg">Job not found or has been closed.</div>
-  }
-</div>
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" formControlName="applicantName" placeholder="Enter your name">
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" formControlName="applicantEmail" placeholder="Enter your email">
+      </div>
+
+      <div class="input-group">
+        <label>Phone</label>
+        <input type="text" formControlName="phone" placeholder="Enter your phone number">
+      </div>
+
+      <div class="input-group">
+        <label>Address</label>
+        <input type="text" formControlName="address" placeholder="Enter your address">
+      </div>
+
+      <div class="input-group">
+        <label>Graduation Year</label>
+        <input type="number" formControlName="graduationYear" placeholder="e.g. 2024">
+      </div>
+
+      <div class="input-group">
+        <label>Qualification</label>
+        <input type="text" formControlName="qualification" placeholder="e.g. B.Tech, MCA">
+      </div>
+
+      <div class="input-group">
+        <label>Resume Link / Portfolio</label>
+        <input type="url" formControlName="resumeLink" placeholder="https://...">
+      </div>
+
+      <button
+        type="submit"
+        class="submit-action-btn"
+        [disabled]="applyForm.invalid">
+        Submit Application
+      </button>
+
+    </form>
+
+  </div>
+</section>
