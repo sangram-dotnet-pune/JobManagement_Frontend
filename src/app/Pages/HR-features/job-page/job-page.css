@@ -1,0 +1,17 @@
+.jobs-page {
+  display: flex;            /* 🔑 KEY FIX */
+  height: 100%;
+  gap: 16px;
+}
+
+.jobs-left {
+  width: 40%;
+  overflow-y: auto;
+}
+
+.jobs-right {
+  width: 60%;
+  overflow-y: auto;
+  border-left: 1px solid #e5e7eb;
+  padding-left: 16px;
+}

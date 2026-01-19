@@ -1,0 +1,13 @@
+<div class="jobs-page">
+  <div class="jobs-left">
+    <app-job-list
+      (jobSelected)="onJobSelected($event)">
+    </app-job-list>
+  </div>
+
+  <div class="jobs-right">
+    <app-applicant-list
+      [jobId]="selectedJobId">
+    </app-applicant-list>
+  </div>
+</div>

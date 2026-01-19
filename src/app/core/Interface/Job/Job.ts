@@ -11,6 +11,21 @@ export interface Job {
   salaryMin?: number;
   salaryMax?: number;
   status: string;
-  createdAt: string;   // ISO string from backend
+  createdAt: string;  
   createdBy: UserSummary;
+}
+
+export interface HrJob {
+  id: number;
+  title: string;
+  location: string;
+  applicationsCount: number;
+}
+
+
+export interface JobApplication {
+  id: number;
+  applicantName: string;
+  email: string;
+  status: string;
 }

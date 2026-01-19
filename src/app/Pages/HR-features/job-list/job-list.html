@@ -1,0 +1,10 @@
+<div class="job-card" *ngFor="let job of jobs()">
+  <h3>{{ job.title }}</h3>
+
+  <p>📍 {{ job.location }}</p>
+  <p>👥 {{ job.applicationsCount }} Applications</p>
+
+  <button (click)="selectJob(job.id)">
+    View Applications
+  </button>
+</div>

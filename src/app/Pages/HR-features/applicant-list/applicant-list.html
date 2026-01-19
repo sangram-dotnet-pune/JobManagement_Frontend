@@ -1,0 +1,16 @@
+<div *ngIf="jobId; else noJob">
+  <h2>Applications</h2>
+
+  <div class="app-card" *ngFor="let app of Jobapplications()">
+    <h4>{{ app.applicantName }}</h4>
+    <p>{{ app.email }}</p>
+
+    <span class="status" [class]="app.status.toLowerCase()">
+      {{ app.status }}
+    </span>
+  </div>
+</div>
+
+<ng-template #noJob>
+  <p>Select a job to view applications</p>
+</ng-template>

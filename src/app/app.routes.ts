@@ -8,6 +8,8 @@ import { JobListing } from './Pages/Job/job-listing/job-listing';
 import { ApplicantProfile } from './Pages/Dashboard/applicant.profile/applicant.profile';
 import { JobApplication } from './Pages/Job/job-application/job.application/job.application';
 import { AppliedJobs } from './Pages/Job/AppliedJobs/appliedjobs';
+import { HrDashboard } from './Pages/Dashboard/hr.dashboard/hr.dashboard';
+import { JobPage } from './Pages/HR-features/job-page/job-page';
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
@@ -24,7 +26,13 @@ export const routes: Routes = [
      
       { path: 'applied', component: AppliedJobs }
     ]
-  },
-
-  { path: 'apply/:id', component: JobApplication }
+    },{
+       path:'hrDashboard',component:HrDashboard,
+       children:[
+       { path: 'jobs', component: JobPage }, 
+      {path: 'profile',component:ApplicantProfile}
+       ]
+    },
+    
+    { path: 'apply/:id', component: JobApplication }
 ];

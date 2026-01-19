@@ -1,0 +1,14 @@
+
+
+.dashboard-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px; /* Example fixed width */
+  flex-shrink: 0;
+}
+
+.dashboard-content {
+  flex-grow: 1; /* This ensures the dashboard takes up the remaining space */
+}

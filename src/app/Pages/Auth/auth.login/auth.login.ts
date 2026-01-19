@@ -43,6 +43,10 @@ export class AuthLogin {
         if(response.role === 'APPLICANT'){
           this.router.navigate(['/applicantDashboard']);
         }
+
+        if(response.role === 'HR'){
+          this.router.navigate(['/hrDashboard']);
+        }
         
       },
       error: (error) => {
