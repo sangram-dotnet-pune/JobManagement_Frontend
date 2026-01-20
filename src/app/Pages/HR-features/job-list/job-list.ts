@@ -52,6 +52,24 @@ export class JobList {
       }
     });
   }
+  expireJob(jobId: number) {
+  if (!confirm('Are you sure you want to expire this job?')) {
+    return;
+  }
+
+  this.JobApiService.deleteJob(jobId).subscribe({
+    next: () => {
+      
+          this.loadHrJobs();
+          console.log(`Deleting JobId = ${jobId}`);
+
+    },
+    error: () => {
+      alert('Failed to expire job');
+    }
+  });
+}
+
 
   selectJob(jobId: number) {
     this.jobSelected.emit(jobId);

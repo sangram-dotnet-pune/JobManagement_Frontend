@@ -2,7 +2,12 @@
 
   <div class="job-header">
     <h3>{{ job.title }}</h3>
-    <span class="status" [ngClass]="job.status.toLowerCase()">{{ job.status }}</span>
+
+    <span
+      class="status"
+      [ngClass]="job.status.toLowerCase()">
+      {{ job.status }}
+    </span>
   </div>
 
   <p class="description">
@@ -21,11 +26,18 @@
 
   <div class="footer">
     <small>
-      Posted by {{ job.createdBy.full_name }} • {{ job.createdAt | date:'mediumDate' }}
+      Posted by {{ job.createdBy.full_name }}
+      • {{ job.createdAt | date:'mediumDate' }}
     </small>
   </div>
 
   <div class="actions">
-    <button class="apply-btn" (click)="onApply()">Apply</button>
+    <button
+      class="apply-btn"
+      [disabled]="job.status !== 'Open'"
+      (click)="onApply()">
+      {{ job.status === 'Open' ? 'Apply' : 'Expired' }}
+    </button>
   </div>
+
 </div>

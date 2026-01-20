@@ -29,6 +29,9 @@ export class JobApiService {
   postJob(job:CreateJob) {
           return this.http.post('http://localhost:5055/api/Job/create', job);
       }
+  deleteJob(id: number) {
+    return this.http.delete(`http://localhost:5055/api/Job/${id}`);
+  }
 
 
   getApplicationsByJobId(id: string): Observable<ApplicationResponse[]> {

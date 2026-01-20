@@ -4,7 +4,15 @@
   <p>📍 {{ job.location }}</p>
   <p>👥 {{ job.applicationsCount }} Applications</p>
 
-  <button (click)="selectJob(job.id)">
-    View Applications
-  </button>
+  <div class="actions">
+    <button (click)="selectJob(job.id)">
+      View Applications
+    </button>
+
+    <button
+      class="delete-btn"
+      (click)="expireJob(job.id)">
+      Expire Job
+    </button>
+  </div>
 </div>
