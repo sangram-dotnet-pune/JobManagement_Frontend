@@ -13,8 +13,7 @@ export class HrDashboard {
 
    sidebarItems = [
    { label: 'Jobs', icon: '💼', route: '/hrDashboard/jobs' },
-
- 
+    { label:'Post a Job', icon:'📝', route:'/hrDashboard/postJob' },
   { label: 'Profile', icon: '👤', route: '/hrDashboard/profile' },
   { label: 'Notifications', icon: '🔔', route: '/hrDashboard/notifications' },
   { label: 'Logout', icon: '🚪', action: 'logout' }

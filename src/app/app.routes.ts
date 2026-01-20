@@ -10,6 +10,7 @@ import { JobApplication } from './Pages/Job/job-application/job.application/job.
 import { AppliedJobs } from './Pages/Job/AppliedJobs/appliedjobs';
 import { HrDashboard } from './Pages/Dashboard/hr.dashboard/hr.dashboard';
 import { JobPage } from './Pages/HR-features/job-page/job-page';
+import { CreateJob } from './Pages/HR-features/Create-application/create.aplication';
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
@@ -29,7 +30,8 @@ export const routes: Routes = [
     },{
        path:'hrDashboard',component:HrDashboard,
        children:[
-       { path: 'jobs', component: JobPage }, 
+       { path: 'jobs', component: JobPage },
+       {path: 'postJob', component:CreateJob}, 
       {path: 'profile',component:ApplicantProfile}
        ]
     },
