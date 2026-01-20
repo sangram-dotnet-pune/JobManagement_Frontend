@@ -15,7 +15,8 @@ export class ApplicantList {
   constructor(private jobApiService: JobApiService) {}
 
   @Input() jobId!: number;
-
+  @Input() jobTitle!: string;
+ 
   Jobapplications = signal<JobApplication[]>([]);
   applications: ApplicationResponse[] = [];
 
@@ -25,6 +26,7 @@ export class ApplicantList {
   ngOnChanges() {
     if (this.jobId) {
       this.loadApplications(this.jobId);
+      
     }
   }
 
