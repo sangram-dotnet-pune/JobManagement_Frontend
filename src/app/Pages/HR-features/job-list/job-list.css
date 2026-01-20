@@ -20,3 +20,20 @@ button {
   border-radius: 6px;
    cursor: pointer;
 }
+
+
+.delete-btn{
+   margin-top: 10px;
+  background: #fb0101;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+   cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  gap: 12px; 
+  margin-top: 12px;
+}
