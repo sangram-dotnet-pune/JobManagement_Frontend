@@ -2,7 +2,7 @@
 .job-card {
   background: var(--bg-card, #fff);
   border: 1px solid var(--border-color, #ddd);
-  border-radius: 16px;      /* slightly bigger radius */
+  border-radius: 16px;     
   padding: 24px;             /* bigger padding */
   width: 100%;               /* full width in grid column */
   max-width: 480px;          /* adjust to allow 2 cards in a row */

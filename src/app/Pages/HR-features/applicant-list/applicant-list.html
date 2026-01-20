@@ -3,7 +3,10 @@
 
   <div class="app-card" *ngFor="let app of Jobapplications()">
     <h4>{{ app.applicantName }}</h4>
-    <p>{{ app.email }}</p>
+
+    <p class="email" (click)="openFlyoutById(app.id)">
+      {{ app.email }}
+    </p>
 
     <span class="status" [class]="app.status.toLowerCase()">
       {{ app.status }}
@@ -14,3 +17,56 @@
 <ng-template #noJob>
   <p>Select a job to view applications</p>
 </ng-template>
+
+
+<div class="flyout-backdrop" *ngIf="isFlyoutOpen()" (click)="closeFlyout()"></div>
+
+<div class="flyout" *ngIf="isFlyoutOpen()">
+  <button class="close-btn" (click)="closeFlyout()">✕</button>
+
+  <ng-container *ngIf="selectedApplication() as app">
+
+    <div class="modal-header">
+      <h3>{{ app.applicantName }}</h3>
+      <span class="badge" [class]="app.status.toLowerCase()">
+        {{ app.status }}
+      </span>
+    </div>
+
+ 
+    <section class="card">
+      <h4> Personal Info</h4>
+      <p><b>Email:</b> {{ app.applicantEmail }}</p>
+      <p><b>Phone:</b> {{ app.phone }}</p>
+      <p><b>Address:</b> {{ app.address }}</p>
+    </section>
+
+    <section class="card">
+      <h4> Education</h4>
+      <p><b>Qualification:</b> {{ app.qualification }}</p>
+      <p><b>Graduation Year:</b> {{ app.graduationYear }}</p>
+    </section>
+
+    <section class="card">
+      <h4> Application</h4>
+      <p><b>Applied At:</b> {{ app.appliedAt | date:'medium' }}</p>
+
+      <a *ngIf="app.resumeUrl"
+         [href]="app.resumeUrl"
+         target="_blank"
+         class="resume-link">
+        📎 View Resume
+      </a>
+
+      <p *ngIf="app.coverLetter" class="cover-letter">
+        {{ app.coverLetter }}
+      </p>
+    </section>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="reject">Reject</button>
+      <button class="approve">Approve</button>
+    </div>
+  </ng-container>
+</div>

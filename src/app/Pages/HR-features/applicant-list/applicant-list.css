@@ -14,3 +14,138 @@
 .applied { background: #e0f2fe; }
 .shortlisted { background: #dcfce7; }
 .rejected { background: #fee2e2; }
+
+
+.email {
+  color: #2563eb;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.flyout-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+}
+
+
+.flyout {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  width: 620px;
+  max-width: 92%;
+  max-height: 82vh;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 28px;
+  border-radius: 18px;
+  z-index: 1001;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+  animation: modalIn 0.3s ease forwards;
+}
+
+@keyframes modalIn {
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge.approved { background: #dcfce7; color: #166534; }
+.badge.pending  { background: #fef9c3; color: #854d0e; }
+.badge.rejected { background: #fee2e2; color: #991b1b; }
+
+/* Cards */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.card h4 {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #334155;
+}
+
+/* Resume */
+.resume-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Cover letter */
+.cover-letter {
+  margin-top: 10px;
+  font-style: italic;
+  color: #475569;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.approve {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.reject {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+}

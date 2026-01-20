@@ -19,6 +19,9 @@ export class ApplicantList {
   Jobapplications = signal<JobApplication[]>([]);
   applications: ApplicationResponse[] = [];
 
+
+    selectedApplication = signal<ApplicationResponse | null>(null);
+  isFlyoutOpen = signal(false);
   ngOnChanges() {
     if (this.jobId) {
       this.loadApplications(this.jobId);
@@ -44,5 +47,26 @@ export class ApplicantList {
         this.applications = [];
       }
     });
+  }
+   openFlyoutById(applicationId: number) {
+  const fullApplication = this.applications.find(
+    app => app.id === applicationId
+  );
+
+  if (!fullApplication) {
+    console.error('Application not found for id:', applicationId);
+    return;
+  }
+
+  this.selectedApplication.set(fullApplication);
+  this.isFlyoutOpen.set(true);
+}
+
+
+  
+
+  closeFlyout() {
+    this.isFlyoutOpen.set(false);
+    this.selectedApplication.set(null);
   }
 }

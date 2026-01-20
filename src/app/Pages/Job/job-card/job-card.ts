@@ -18,12 +18,12 @@ export class JobCard {
    constructor(private router: Router) {}
 
   onApply() {
-    // 1. Create the URL based on the job ID
+    
     const url = this.router.serializeUrl(
       this.router.createUrlTree(['/apply', this.job.id])
     );
 
-    // 2. Open in a new browser tab
+   
     window.open(url, '_blank');
   }
 }

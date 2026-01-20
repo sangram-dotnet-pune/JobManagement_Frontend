@@ -28,7 +28,7 @@ export class JobApplication implements OnInit {
     private activeRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {
-    // ✅ ALL REQUIRED FIELDS
+  
     this.applyForm = this.fb.group({
       applicantName: ['', Validators.required],
       applicantEmail: ['', [Validators.required, Validators.email]],
@@ -61,7 +61,7 @@ export class JobApplication implements OnInit {
   onSubmitApplication(): void {
     if (this.applyForm.invalid || !this.job()) return;
 
-    // ✅ PAYLOAD MATCHES BACKEND DTO EXACTLY
+
     const payload = {
       jobId: this.job()!.id,
       applicantName: this.applyForm.value.applicantName,
