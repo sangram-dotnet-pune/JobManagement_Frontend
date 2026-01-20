@@ -33,8 +33,8 @@
 
   <div class="actions">
    <button
-  [ngClass]="job.status === 'Open' ? 'apply-btn' : 'expire-btn'"
-  [disabled]="job.status !== 'Open'"
+  [ngClass]="job.status === 'OPEN' ? 'apply-btn' : 'expire-btn'"
+  [disabled]="job.status !== 'OPEN'"
   (click)="onApply()">
   {{ job.status === 'OPEN' ? 'Apply' : 'Expired' }}
 </button>
