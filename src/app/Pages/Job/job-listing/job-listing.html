@@ -27,7 +27,7 @@
   <p>Try different keywords or check back later.</p>
 </div>
 
-<!-- Job List Grid -->
+
 <div *ngIf="!isLoading() && filteredJobs.length > 0" class="job-list">
   <app-job-card
     *ngFor="let job of filteredJobs; trackBy: trackByJobId"

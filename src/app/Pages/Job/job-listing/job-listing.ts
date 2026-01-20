@@ -29,7 +29,7 @@ loadJobs() {
   this.jobService.getAllJobs().subscribe({
     next: (jobs: Job[]) => {
       this.jobs.set(jobs);
-      this.filteredJobs = jobs; // ✅ show all jobs initially
+      this.filteredJobs = jobs; 
       this.isLoading.set(false);
     },
     error: () => {

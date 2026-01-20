@@ -2,10 +2,12 @@
 .job-card {
   background: var(--bg-card, #fff);
   border: 1px solid var(--border-color, #ddd);
-  border-radius: 16px;     
-  padding: 24px;             /* bigger padding */
-  width: 100%;               /* full width in grid column */
-  max-width: 480px;          /* adjust to allow 2 cards in a row */
+  border-radius: 16px;
+  padding: 24px;
+
+  width: 100%;       
+  max-width: none;  
+
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -15,7 +17,8 @@
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
-/* Header */
+
+
 .job-header {
   display: flex;
   justify-content: space-between;
@@ -23,33 +26,33 @@
   margin-bottom: 16px;
 }
 
-/* Status */
+
 .status {
-  padding: 6px 12px;          /* slightly bigger */
+  padding: 6px 12px;         
   border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
 }
 
-/* Description */
+
 .description {
-  font-size: 15px;             /* slightly bigger */
+  font-size: 15px;            
   color: #555;
   margin-bottom: 16px;
   line-height: 1.6;
 }
 
-/* Job details */
+
 .job-details {
   display: flex;
-  gap: 20px;                  /* more spacing */
+  gap: 20px;                 
   font-size: 14px;
   color: #777;
   margin-bottom: 16px;
 }
 
-/* Salary */
+
 .salary {
   font-weight: 600;
   margin-bottom: 16px;
@@ -90,10 +93,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); 
   gap: 24px;
-  justify-items: center;
+ width: 100%;
 }
 
-/* Responsive: 1 card per row on small screens */
+
 @media (max-width: 768px) {
   .job-list {
     grid-template-columns: 1fr;
