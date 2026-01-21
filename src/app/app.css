@@ -1,4 +1,11 @@
 .app-container {
   min-height: 100vh;
   background-color: #F4F7F9;
+   
+}
+
+.app-content {
+  flex: 1;
+  overflow: hidden;  
+  padding: 16px;
 }

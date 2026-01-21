@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../../core/Services/Auth.Service/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { noSpaceValidator, noSpecialCharValidator } from '../../../Shared/Validators/Username/username.validator';
 
 @Component({
   selector: 'app-auth.register',
@@ -17,7 +18,7 @@ export class AuthRegister {
 selectedRole = signal<number>(1);
 isRegistered = signal<boolean>(false);
    registerForm: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(2),noSpaceValidator,noSpecialCharValidator]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),

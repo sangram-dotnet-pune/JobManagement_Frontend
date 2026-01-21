@@ -64,7 +64,7 @@
   align-items: center;
   justify-content: center;
   padding: 48px 0;
-  width: 100%;
+  width: 100%;  
   color: #6b7280;
 }
 
@@ -91,4 +91,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.job-list {
+  height: calc(100vh - 64px - 32px);            
+  overflow-y: auto;        
+  padding-right: 8px;
+}
+
+
+.job-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.job-list::-webkit-scrollbar-thumb {
+  background: #cbd5f5;
+  border-radius: 10px;
 }

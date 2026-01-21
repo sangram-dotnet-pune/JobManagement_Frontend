@@ -24,4 +24,5 @@ html, body {
   margin: 0;
   background-color: #F4F7F9;
   font-family: 'Inter', 'Segoe UI', sans-serif;
+   overflow: hidden; 
 }

@@ -16,8 +16,8 @@ export class JobList {
 
   @Output() jobSelected = new EventEmitter<number>();
 
-
   jobs = signal<HrJob[]>([]);
+  selectedJobId: number | null = null; // ⭐ added
 
   ngOnInit(): void {
     this.loadHrJobs();
@@ -25,9 +25,7 @@ export class JobList {
 
   loadHrJobs() {
     this.JobApiService.getAllJobs().pipe(
-
       switchMap((jobs: Job[]) => {
-
         const requests = jobs.map(job =>
           this.JobApiService.getApplicationsByJobId(job.id.toString()).pipe(
             map(applications => ({
@@ -38,40 +36,38 @@ export class JobList {
             }))
           )
         );
-
         return forkJoin(requests);
       })
-
     ).subscribe({
       next: (hrJobs: HrJob[]) => {
-        this.jobs.set(hrJobs); 
-        console.log('Loaded HR jobs', this.jobs());
+        this.jobs.set(hrJobs);
       },
       error: err => {
         console.error('Failed to load HR jobs', err);
       }
     });
   }
+
   expireJob(jobId: number) {
-  if (!confirm('Are you sure you want to expire this job?')) {
-    return;
+    if (!confirm('Are you sure you want to expire this job?')) {
+      return;
+    }
+
+    this.JobApiService.deleteJob(jobId).subscribe({
+      next: () => {
+        this.loadHrJobs();
+        if (this.selectedJobId === jobId) {
+          this.selectedJobId = null;
+        }
+      },
+      error: () => {
+        alert('Failed to expire job');
+      }
+    });
   }
 
-  this.JobApiService.deleteJob(jobId).subscribe({
-    next: () => {
-      
-          this.loadHrJobs();
-          console.log(`Deleting JobId = ${jobId}`);
-
-    },
-    error: () => {
-      alert('Failed to expire job');
-    }
-  });
-}
-
-
   selectJob(jobId: number) {
+    this.selectedJobId = jobId;  
     this.jobSelected.emit(jobId);
   }
 }
