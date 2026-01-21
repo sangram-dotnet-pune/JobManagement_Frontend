@@ -14,7 +14,7 @@ export class JobList {
 
   constructor(private JobApiService: JobApiService) {}
 
-  @Output() jobSelected = new EventEmitter<number>();
+  @Output() jobSelected = new EventEmitter<{ id: number; title: string }>();
 
   jobs = signal<HrJob[]>([]);
   selectedJobId: number | null = null; // ⭐ added
@@ -66,8 +66,12 @@ export class JobList {
     });
   }
 
-  selectJob(jobId: number) {
-    this.selectedJobId = jobId;  
-    this.jobSelected.emit(jobId);
+  selectJob(job: HrJob) {
+    this.selectedJobId = job.id;
+
+    this.jobSelected.emit({
+      id: job.id,
+      title: job.title
+    });
   }
 }

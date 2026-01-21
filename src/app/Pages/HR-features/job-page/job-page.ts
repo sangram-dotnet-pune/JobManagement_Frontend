@@ -13,8 +13,11 @@ import { CommonModule } from '@angular/common';
 export class JobPage {
 
     selectedJobId!: number;
+    selectedJobTitle!: string;
 
-  onJobSelected(jobId: number) {
-    this.selectedJobId = jobId;
-  }
+  onJobSelected(job: { id: number; title: string }): void {
+  this.selectedJobId = job.id;
+  this.selectedJobTitle = job.title;
+}
+
 }

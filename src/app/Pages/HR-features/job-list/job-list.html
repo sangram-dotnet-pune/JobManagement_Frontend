@@ -2,7 +2,7 @@
   <div
     class="job-card"
     *ngFor="let job of jobs()"
-    (click)="selectJob(job.id)"
+    (click)="selectJob(job)"
     [class.selected]="selectedJobId === job.id"
   >
     <!-- Expire icon -->

@@ -1,42 +1,48 @@
-<div *ngIf="jobId; else noJob">
+<div *ngIf="jobId && jobTitle; else noJob">
 
-  <h2>Applications</h2>
+  <!-- Title -->
+  <h2 class="applications-title">
+    {{ jobTitle }} – Applications
+  </h2>
 
   <!-- Search -->
- <div class="search-wrapper">
-  <input
-    type="text"
-    class="search-input"
-    placeholder="Search by name or email..."
-    [(ngModel)]="searchTerm"
-  />
-</div>
+  <div class="search-wrapper">
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Search by name or email..."
+      [(ngModel)]="searchTerm"
+    />
+  </div>
 
-
+  <!-- Applications List -->
   <div
     class="app-card"
-    *ngFor="let app of Jobapplications() | applicantFilter:searchTerm"
-    (click)="openFlyoutById(app.id)">
+    *ngFor="let app of Jobapplications() | applicantFilter: searchTerm"
+    (click)="openFlyoutById(app.id)"
+  >
+    <div class="card-header">
+      <h4>{{ app.applicantName }}</h4>
 
-    <h4>{{ app.applicantName }}</h4>
-
-    <p class="email">
-      {{ app.email }}
-    </p>
-
-    <span class="status" [class]="app.status.toLowerCase()">
-      {{ app.status }}
-    </span>
+      <span class="status" [class]="app.status.toLowerCase()">
+        {{ app.status }}
+      </span>
+    </div>
   </div>
 
 </div>
 
+<!-- No Job Selected -->
 <ng-template #noJob>
-  <p>Select a job to view applications</p>
+  <p class="empty-text">Select a job to view applications</p>
 </ng-template>
 
 <!-- Backdrop -->
-<div class="flyout-backdrop" *ngIf="isFlyoutOpen()" (click)="closeFlyout()"></div>
+<div
+  class="flyout-backdrop"
+  *ngIf="isFlyoutOpen()"
+  (click)="closeFlyout()">
+</div>
 
 <!-- Flyout -->
 <div class="flyout" *ngIf="isFlyoutOpen()">
