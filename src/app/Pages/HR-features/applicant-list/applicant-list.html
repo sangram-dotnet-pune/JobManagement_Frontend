@@ -1,10 +1,26 @@
 <div *ngIf="jobId; else noJob">
-  <h2>Applications </h2>
 
-  <div class="app-card" *ngFor="let app of Jobapplications()">
+  <h2>Applications</h2>
+
+  <!-- Search -->
+ <div class="search-wrapper">
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Search by name or email..."
+    [(ngModel)]="searchTerm"
+  />
+</div>
+
+
+  <div
+    class="app-card"
+    *ngFor="let app of Jobapplications() | applicantFilter:searchTerm"
+    (click)="openFlyoutById(app.id)">
+
     <h4>{{ app.applicantName }}</h4>
 
-    <p class="email" (click)="openFlyoutById(app.id)">
+    <p class="email">
       {{ app.email }}
     </p>
 
@@ -12,15 +28,17 @@
       {{ app.status }}
     </span>
   </div>
+
 </div>
 
 <ng-template #noJob>
   <p>Select a job to view applications</p>
 </ng-template>
 
-
+<!-- Backdrop -->
 <div class="flyout-backdrop" *ngIf="isFlyoutOpen()" (click)="closeFlyout()"></div>
 
+<!-- Flyout -->
 <div class="flyout" *ngIf="isFlyoutOpen()">
   <button class="close-btn" (click)="closeFlyout()">✕</button>
 
@@ -33,28 +51,28 @@
       </span>
     </div>
 
- 
     <section class="card">
-      <h4> Personal Info</h4>
+      <h4>Personal Info</h4>
       <p><b>Email:</b> {{ app.applicantEmail }}</p>
       <p><b>Phone:</b> {{ app.phone }}</p>
       <p><b>Address:</b> {{ app.address }}</p>
     </section>
 
     <section class="card">
-      <h4> Education</h4>
+      <h4>Education</h4>
       <p><b>Qualification:</b> {{ app.qualification }}</p>
       <p><b>Graduation Year:</b> {{ app.graduationYear }}</p>
     </section>
 
     <section class="card">
-      <h4> Application</h4>
+      <h4>Application</h4>
       <p><b>Applied At:</b> {{ app.appliedAt | date:'medium' }}</p>
 
-      <a *ngIf="app.resumeUrl"
-         [href]="app.resumeUrl"
-         target="_blank"
-         class="resume-link">
+      <a
+        *ngIf="app.resumeUrl"
+        [href]="app.resumeUrl"
+        target="_blank"
+        class="resume-link">
         📎 View Resume
       </a>
 
@@ -63,10 +81,10 @@
       </p>
     </section>
 
-    <!-- Actions -->
     <div class="actions">
       <button class="reject">Reject</button>
       <button class="approve">Approve</button>
     </div>
+
   </ng-container>
 </div>
