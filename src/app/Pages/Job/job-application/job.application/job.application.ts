@@ -14,10 +14,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './job.application.css',
 })
 export class JobApplication implements OnInit {
-
   job = signal<Job | null>(null);
   isLoading = signal(true);
   errorMessage = signal<string | null>(null);
+  applyError = signal<string | null>(null);
 
   applyForm: FormGroup;
 
@@ -26,9 +26,8 @@ export class JobApplication implements OnInit {
     private jobService: JobApiService,
     private applicationService: ApplicationApiService,
     private activeRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {
-  
     this.applyForm = this.fb.group({
       applicantName: ['', Validators.required],
       applicantEmail: ['', [Validators.required, Validators.email]],
@@ -37,7 +36,7 @@ export class JobApplication implements OnInit {
       graduationYear: ['', Validators.required],
       qualification: ['', Validators.required],
       resumeLink: ['', Validators.required],
-      coverLetter: ['']
+      coverLetter: [''],
     });
   }
 
@@ -53,14 +52,14 @@ export class JobApplication implements OnInit {
         error: () => {
           this.errorMessage.set('Could not load job details.');
           this.isLoading.set(false);
-        }
+        },
       });
     }
   }
 
   onSubmitApplication(): void {
     if (this.applyForm.invalid || !this.job()) return;
-
+    this.applyError.set(null);
 
     const payload = {
       jobId: this.job()!.id,
@@ -71,18 +70,26 @@ export class JobApplication implements OnInit {
       graduationYear: Number(this.applyForm.value.graduationYear),
       qualification: this.applyForm.value.qualification,
       resumeLink: this.applyForm.value.resumeLink,
-      coverLetter: this.applyForm.value.coverLetter
+      coverLetter: this.applyForm.value.coverLetter,
     };
 
     this.applicationService.applyJob(payload).subscribe({
       next: () => {
-        // ✅ CORRECT ROUTE (matches your app.routes.ts)
+        
         this.router.navigate(['/applicantDashboard/applied']);
       },
       error: (err) => {
         console.error(err);
-        alert('Failed to apply for job. Please check details or try again.');
-      }
+
+        if (err?.error?.message) {
+          this.applyError.set(err.error.message);
+        } else {
+          this.applyError.set('Failed to apply for job. Please try again.');
+        }
+      },
     });
+  }
+  onCancel(): void {
+    this.router.navigate(['/applicantDashboard']);
   }
 }

@@ -83,7 +83,24 @@
   flex-direction: column;
   align-items: center;
 }
-
+.cancel-action-btn {
+  width: 90%;
+  max-width: 90%;
+  background: #e2e8f0;
+  color: #df0b0b;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px auto 0 auto;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(226, 232, 240, 0.3);
+  display: block;
+}
 .input-group label {
   display: block;
   font-weight: 600;
@@ -93,6 +110,16 @@
   width: 90%;
   text-align: left;
 }
+.apply-error {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  font-weight: 500;
+  text-align: center;
+}
+
 
 .input-group input {
   width: 90%;

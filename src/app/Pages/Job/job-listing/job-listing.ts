@@ -4,11 +4,12 @@ import { Job } from '../../../core/Interface/Job/Job';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { JobCard } from '../job-card/job-card';
+import { JobFilterPipe } from "./job-filter.pipe";
 
 @Component({
   selector: 'app-job-listing',
   standalone: true,
-  imports: [CommonModule, JobCard, FormsModule],
+  imports: [CommonModule, JobCard, FormsModule, JobFilterPipe],
   templateUrl: './job-listing.html',
   styleUrl: './job-listing.css',
 })
@@ -17,8 +18,6 @@ export class JobListing implements OnInit {
   jobs = signal<Job[]>([]);
   isLoading = signal<boolean>(true);
   searchTerm: string = '';
-locationTerm: string = '';
-  filteredJobs: Job[] = [];
   constructor(private jobService: JobApiService) {}
 
   ngOnInit() {
@@ -29,7 +28,6 @@ loadJobs() {
   this.jobService.getAllJobs().subscribe({
     next: (jobs: Job[]) => {
       this.jobs.set(jobs);
-      this.filteredJobs = jobs; 
       this.isLoading.set(false);
     },
     error: () => {
@@ -42,26 +40,5 @@ loadJobs() {
   trackByJobId(index: number, job: Job) {
     return job.id;
   }
-
-
- 
-filterJobs() {
-  const term = this.searchTerm.toLowerCase().trim();
-  const location = this.locationTerm.toLowerCase().trim();
-
-
-  if (!term && !location) {
-    this.filteredJobs = this.jobs();
-    return;
-  }
-
-  this.filteredJobs = this.jobs().filter(job =>
-    (
-      job.title.toLowerCase().includes(term) ||
-      job.description.toLowerCase().includes(term)
-    ) &&
-    (!location || job.location?.toLowerCase().includes(location))
-  );
-}
 
 }

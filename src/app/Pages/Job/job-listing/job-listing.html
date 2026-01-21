@@ -1,36 +1,31 @@
-<!-- Search Bar -->
+
 <div class="job-search">
   <input
     type="text"
-    placeholder="Search jobs by title, keyword, or location..."
+    placeholder="Search by title, keyword, or location..."
     [(ngModel)]="searchTerm"
-    (input)="filterJobs()"
-  />
-
-    <input
-    type="text"
-    placeholder="City, state, zipcode or 'remote'"
-    [(ngModel)]="locationTerm"
-    (input)="filterJobs()"
   />
 </div>
-
 
 <div *ngIf="isLoading()" class="job-state loading">
   <span class="spinner"></span>
   <p>Loading jobs...</p>
 </div>
 
-
-<div *ngIf="!isLoading() && filteredJobs.length === 0" class="job-state empty">
+<div
+  *ngIf="!isLoading() && (jobs() | jobFilter:searchTerm).length === 0"
+  class="job-state empty">
   <h3>No jobs found</h3>
   <p>Try different keywords or check back later.</p>
 </div>
 
+<div
+  *ngIf="!isLoading() && (jobs() | jobFilter:searchTerm).length > 0"
+  class="job-list">
 
-<div *ngIf="!isLoading() && filteredJobs.length > 0" class="job-list">
   <app-job-card
-    *ngFor="let job of filteredJobs; trackBy: trackByJobId"
-    [job]="job"
-  ></app-job-card>
+    *ngFor="let job of jobs() | jobFilter:searchTerm; trackBy: trackByJobId"
+    [job]="job">
+  </app-job-card>
+
 </div>
