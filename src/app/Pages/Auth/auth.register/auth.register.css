@@ -182,3 +182,8 @@ small {
   margin-top: 10px;
   font-weight: 500;
 }
+
+.warning-class{
+  color: #dc3545;
+  font-size: 12px;
+}

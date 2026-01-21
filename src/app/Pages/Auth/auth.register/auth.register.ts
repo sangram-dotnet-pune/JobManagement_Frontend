@@ -4,6 +4,7 @@ import { AuthService } from '../../../core/Services/Auth.Service/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { noSpaceValidator, noSpecialCharValidator } from '../../../Shared/Validators/Username/username.validator';
+import { CustomPassword } from '../../../Shared/Validators/Password/password.validator';
 
 @Component({
   selector: 'app-auth.register',
@@ -21,7 +22,7 @@ isRegistered = signal<boolean>(false);
     name: new FormControl('', [Validators.required, Validators.minLength(2),noSpaceValidator,noSpecialCharValidator]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6),CustomPassword]),
   });
 
 

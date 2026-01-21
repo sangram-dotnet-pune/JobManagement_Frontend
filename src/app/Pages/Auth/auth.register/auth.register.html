@@ -31,15 +31,15 @@
       <label>Name</label>
       <input type="text" formControlName="name" placeholder="Enter your name" />
 
-       <small *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched">
-        Name is required
+       <small class="warning-class" *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched">
+        *Name is required
       </small>
-      <small *ngIf="registerForm.get('name')?.errors?.['noSpace'] && registerForm.get('name')?.touched">
-        Name cannot contain spaces
+      <small class="warning-class" *ngIf="registerForm.get('name')?.errors?.['noSpace'] && registerForm.get('name')?.touched">
+        *Name cannot contain spaces
       </small>
 
-      <small *ngIf="registerForm.get('name')?.errors?.['noSpecialChar'] && registerForm.get('name')?.touched">
-        Name cannot contain special characters
+      <small class="warning-class" *ngIf="registerForm.get('name')?.errors?.['noSpecialChar'] && registerForm.get('name')?.touched">
+        *Name cannot contain special characters
           </small>
     </div>
 
@@ -47,25 +47,29 @@
     <div class="form-group">
       <label>Email</label>
       <input type="email" formControlName="email" placeholder="Enter your email" />
-      <small *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-        Valid email is required
+      <small class="warning-class" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        *Valid email is required
       </small>
     </div>
 
     <div class="form-group">
       <label>Phone</label>
       <input type="tel" formControlName="phone" placeholder="Enter your phone number" />
-      <small *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
-        Valid phone number is required
+      <small class="warning-class" *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
+        *Valid phone number is required
       </small>
     </div>
 
     <div class="form-group">
       <label>Password</label>
       <input type="password" formControlName="password" placeholder="Create password" />
-      <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-        Password is required
+      <small  class="warning-class" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        *Password is required
       </small>
+
+      <small class="warning-class" *ngIf="registerForm.get('password')?.errors?.['passwordStrength'] && registerForm.get('password')?.touched">
+        *Password must be at least 6 characters long  <br> *Password must include uppercase lowercase<br> *Password must include number <br>*Password must include  special character.
+        </small>
     </div>
 
     <button type="submit" class="btn-primary" [disabled]="registerForm.invalid">
