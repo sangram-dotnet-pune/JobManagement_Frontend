@@ -11,11 +11,37 @@ import { CommonModule } from '@angular/common';
 })
 export class HrDashboard {
 
-   sidebarItems = [
-   { label: 'Jobs', icon: '💼', route: '/hrDashboard/jobs' },
-    { label:'Post a Job', icon:'📝', route:'/hrDashboard/postJob' },
-  { label: 'Profile', icon: '👤', route: '/hrDashboard/profile' },
-  { label: 'Notifications', icon: '🔔', route: '/hrDashboard/notifications' },
-  { label: 'Logout', icon: '🚪', action: 'logout' }
+  sidebarItems = [
+  {
+    label: 'Jobs',
+    icon: 'work_outline',
+    iconClass: 'icon-primary',
+    route: '/hrDashboard/jobs'
+  },
+  {
+    label: 'Post a Job',
+    icon: 'post_add',
+    iconClass: 'icon-success',
+    route: '/hrDashboard/postJob'
+  },
+  {
+    label: 'Profile',
+    icon: 'person_outline',
+    iconClass: 'icon-info',
+    route: '/hrDashboard/profile'
+  },
+  {
+    label: 'Notifications',
+    icon: 'notifications_none',
+    iconClass: 'icon-secondary',
+    route: '/hrDashboard/notifications'
+  },
+  {
+    label: 'Logout',
+    icon: 'logout',
+    iconClass: 'icon-muted',
+    action: 'logout'
+  }
 ];
+
 }

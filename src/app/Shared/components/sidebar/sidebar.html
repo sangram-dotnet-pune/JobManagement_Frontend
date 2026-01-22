@@ -5,7 +5,12 @@
       (click)="navigate(item)"
       [class.active]="item.route && isActive(item.route)"
     >
-      <span class="icon">{{ item.icon }}</span>
+      <span
+        class="material-icons icon"
+        [ngClass]="item.iconClass">
+        {{ item.icon }}
+      </span>
+
       <span class="label">{{ item.label }}</span>
     </li>
   </ul>

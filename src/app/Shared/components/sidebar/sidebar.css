@@ -6,6 +6,7 @@
   border-right: 1px solid var(--border-color);
 }
 
+
 .sidebar ul {
   list-style: none;
   padding: 0;
@@ -13,12 +14,14 @@
 }
 
 .sidebar li {
+  position: relative;
+
   display: flex;
   align-items: center;
   gap: 12px;
 
-  padding: 10px 12px;
-  margin-bottom: 6px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
 
   border-radius: 8px;
   cursor: pointer;
@@ -27,50 +30,63 @@
   font-size: 14px;
   font-weight: 500;
 
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
+
+
 
 .sidebar li:hover {
   background-color: var(--primary-light);
   color: var(--primary);
 }
 
-.sidebar li.active {
-  background-color: var(--primary-light);
-  color: var(--primary);
-  font-weight: 600;
+
+.sidebar .icon {
+  font-size: 20px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.icon {
-  font-size: 16px;
-  width: 20px;
-  text-align: center;
+
+.sidebar li .material-icons {
+  transition: color 0.2s ease;
 }
 
-.label {
+.sidebar li:hover .material-icons {
+  filter: brightness(0.9);
+}
+
+
+.sidebar li.active .material-icons {
+  filter: brightness(0.85);
+}
+
+
+.sidebar .label {
   font-size: 14px;
 }
 
 
-.sidebar li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px;
-  cursor: pointer;
-  border-radius: 6px;
-  margin-bottom: 8px;
-  transition: background 0.2s, color 0.2s;
-}
 
-/* Hover */
-.sidebar li:hover {
-  background-color: #005fa3;
-}
-
-/* Active state */
 .sidebar li.active {
-  background-color: #007acc;
+  background-color: var(--primary-light);
+  color: var(--primary);
   font-weight: 600;
-  color: white;
+}
+
+.sidebar li.active .material-icons {
+  filter: brightness(0.85);
+}
+
+
+.sidebar li.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  height: 60%;
+  width: 3px;
+  background-color: var(--primary);
+  border-radius: 2px;
 }

@@ -11,6 +11,7 @@ import { AppliedJobs } from './Pages/Job/AppliedJobs/appliedjobs';
 import { HrDashboard } from './Pages/Dashboard/hr.dashboard/hr.dashboard';
 import { JobPage } from './Pages/HR-features/job-page/job-page';
 import { CreateJob } from './Pages/HR-features/Create-application/create.aplication';
+import { routeGuard } from './core/guards/RouteGuard/route-guard';
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
@@ -20,6 +21,7 @@ export const routes: Routes = [
   {
     path: 'applicantDashboard',
     component: ApplicantDashboard,
+    canActivate: [routeGuard],
     children: [
       { path: 'jobs', component: JobListing },
       { path: 'profile', component: ApplicantProfile },
@@ -29,6 +31,7 @@ export const routes: Routes = [
     ]
     },{
        path:'hrDashboard',component:HrDashboard,
+        canActivate: [routeGuard],
        children:[
        { path: 'jobs', component: JobPage },
        {path: 'postJob', component:CreateJob}, 
@@ -36,5 +39,5 @@ export const routes: Routes = [
        ]
     },
     
-    { path: 'apply/:id', component: JobApplication }
+    { path: 'apply/:id', component: JobApplication , canActivate: [routeGuard]}
 ];

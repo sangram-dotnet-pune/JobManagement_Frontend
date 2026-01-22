@@ -11,11 +11,19 @@
       (click)="expireJob(job.id); $event.stopPropagation()"
       title="Expire Job"
     >
-      🗑️
+      <span class="material-icons icon-danger">delete</span>
     </button>
 
     <h3>{{ job.title }}</h3>
-    <p>📍 {{ job.location }}</p>
-    <p>👥 {{ job.applicationsCount }} Applications</p>
+
+    <p>
+      <span class="material-icons icon-info">location_on</span>
+      {{ job.location }}
+    </p>
+
+    <p>
+      <span class="material-icons icon-secondary">group</span>
+      {{ job.applicationsCount }} Applications
+    </p>
   </div>
 </div>

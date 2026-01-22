@@ -2,16 +2,19 @@
 
   <!-- Loading -->
   <div class="state-msg" *ngIf="loading()">
+    <span class="material-icons icon-muted">hourglass_top</span>
     Loading applied jobs...
   </div>
 
   <!-- Error -->
   <div class="state-msg error" *ngIf="!loading() && errorMessage()">
+    <span class="material-icons icon-muted">error_outline</span>
     {{ errorMessage() }}
   </div>
 
   <!-- Empty -->
   <div class="state-msg" *ngIf="!loading() && appliedJobs().length === 0">
+    <span class="material-icons icon-muted">work_off</span>
     You have not applied to any jobs yet.
   </div>
 
@@ -19,20 +22,34 @@
   <div class="job-card" *ngFor="let job of appliedJobs()">
 
     <div class="job-header">
-      <h3>{{ job.jobTitle }}</h3>
-      <span class="status-badge">{{ job.status }}</span>
+      <h3>
+        <span class="material-icons icon-jobs">work_outline</span>
+        {{ job.jobTitle }}
+      </h3>
+
+      <span class="status-badge">
+        <span class="material-icons icon-info">verified</span>
+        {{ job.status }}
+      </span>
     </div>
 
     <p class="meta">
-      📍 {{ job.location }} &nbsp; | &nbsp;
-      💼 {{ job.employmentType }}
+      <span class="material-icons icon-location">location_on</span>
+      {{ job.location }}
+
+      <span class="separator">|</span>
+
+      <span class="material-icons icon-job">business_center</span>
+      {{ job.employmentType }}
     </p>
 
     <p class="salary">
-      ₹{{ job.minSalary }} - ₹{{ job.maxSalary }}
+      <span class="material-icons icon-salary">currency_rupee</span>
+      {{ job.minSalary }} - {{ job.maxSalary }}
     </p>
 
     <small class="applied-date">
+      <span class="material-icons icon-muted">event</span>
       Applied on {{ job.appliedAt | date:'mediumDate' }}
     </small>
 

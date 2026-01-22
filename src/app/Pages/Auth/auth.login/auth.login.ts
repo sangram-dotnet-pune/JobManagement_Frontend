@@ -38,6 +38,7 @@ export class AuthLogin {
       
         this.loginResponse = response;
         localStorage.setItem('token',   this.loginResponse.token);
+        localStorage.setItem('role',   this.loginResponse.role);
         console.log('Login successful, token stored.',this.loginResponse);
 
         if(response.role === 'APPLICANT'){

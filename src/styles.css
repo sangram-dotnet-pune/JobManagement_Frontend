@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+
 :root {
   --primary: #0CAA41;
   --primary-hover: #08913A;
@@ -19,10 +19,69 @@
 }
 
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
-  background-color: #F4F7F9;
+  background-color: var(--bg-main);
   font-family: 'Inter', 'Segoe UI', sans-serif;
-   overflow: hidden; 
+  /* overflow: visible; */
+}
+
+
+.material-icons {
+  font-size: 18px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+
+.icon-primary,
+.icon-jobs,
+.icon-salary {
+  color: var(--primary);
+}
+
+.icon-secondary,
+.icon-location {
+  color: var(--secondary);
+}
+
+.icon-job {
+  color: var(--primary-hover);
+}
+
+.icon-info {
+  color: var(--text-secondary);
+}
+
+.icon-muted,
+.icon-disabled {
+  color: var(--text-muted);
+}
+
+.icon-success {
+  color: var(--primary);
+}
+
+
+.job-details span,
+.salary,
+.footer small,
+.meta,
+.applied-date,
+.state-msg,
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.separator {
+  margin: 0 8px;
+  color: var(--border-color);
+}
+
+.icon-danger {
+  color: #DC2626; 
 }

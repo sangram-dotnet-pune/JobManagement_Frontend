@@ -1,7 +1,10 @@
 <div class="job-card">
 
   <div class="job-header">
-    <h3>{{ job.title }}</h3>
+    <h3>
+      <span class="material-icons icon-primary">work</span>
+      {{ job.title }}
+    </h3>
 
     <span
       class="status"
@@ -15,30 +18,53 @@
   </p>
 
   <div class="job-details">
-    <span>📍 {{ job.location }}</span>
-    <span>💼 {{ job.employmentType }}</span>
-    <span>📈 {{ job.experienceLevel }}</span>
+    <span>
+      <span class="material-icons icon-secondary">location_on</span>
+      {{ job.location }}
+    </span>
+
+    <span>
+      <span class="material-icons icon-secondary">business_center</span>
+      {{ job.employmentType }}
+    </span>
+
+    <span>
+      <span class="material-icons icon-info">trending_up</span>
+      {{ job.experienceLevel }}
+    </span>
   </div>
 
+  <br>
   <div class="salary">
-    💰 {{ job.salaryMin | currency:'INR' }} - {{ job.salaryMax | currency:'INR' }}
+    <span class="material-icons icon-primary">currency_rupee</span>
+    {{ job.salaryMin | currency:'INR' }} -
+    {{ job.salaryMax | currency:'INR' }}
   </div>
 
   <div class="footer">
     <small>
-      Posted by {{ job.createdBy.full_name }}
-      • {{ job.createdAt | date:'mediumDate' }}
+      <span class="material-icons icon-muted">person</span>
+      {{ job.createdBy.full_name }}
+      •
+      <span class="material-icons icon-muted">calendar_today</span>
+      {{ job.createdAt | date:'mediumDate' }}
     </small>
   </div>
 
   <div class="actions">
-   <button
-  [ngClass]="job.status === 'OPEN' ? 'apply-btn' : 'expire-btn'"
-  [disabled]="job.status !== 'OPEN'"
-  (click)="onApply()">
-  {{ job.status === 'OPEN' ? 'Apply' : 'Expired' }}
-</button>
+    <button
+      [ngClass]="job.status === 'OPEN' ? 'apply-btn' : 'expire-btn'"
+      [disabled]="job.status !== 'OPEN'"
+      (click)="onApply()">
 
+      <span
+        class="material-icons"
+        [ngClass]="job.status === 'OPEN' ? 'icon-success' : 'icon-disabled'">
+        {{ job.status === 'OPEN' ? 'send' : 'block' }}
+      </span>
+
+      {{ job.status === 'OPEN' ? 'Apply' : 'Expired' }}
+    </button>
   </div>
 
 </div>

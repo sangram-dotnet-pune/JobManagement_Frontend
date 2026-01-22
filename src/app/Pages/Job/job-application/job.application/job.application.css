@@ -1,10 +1,20 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--bg-main);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+
 .apply-page-container {
   background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 60px 20px;
+  align-items: flex-start;
+  padding: 40px 20px;
 }
 
 .glass-form-card {
@@ -15,43 +25,12 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
   border: 1px solid #e2e8f0;
   padding: 50px 70px;
-  margin: 20px auto;
+  margin: 0 auto;
 }
 
-.job-info-header {
-  margin-bottom: 30px;
-}
-
-.job-info-header h1 {
-  font-size: 28px;
-  color: #1a202c;
-  margin: 0 0 12px 0;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-.job-info-header p {
-  color: #64748b;
-  margin: 8px 0;
-  font-size: 15px;
-}
-
-.badge.open {
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 600;
-  color: #059669;
-  background: #d1fae5;
-  padding: 6px 16px;
-  border-radius: 20px;
-  margin-top: 8px;
-  border: 1px solid #a7f3d0;
-}
-
-.divider {
-  border: 0;
-  border-top: 2px solid #f1f5f9;
-  margin: 35px 0;
+.scrollable-card {
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
 }
 
 .application-form {
@@ -74,7 +53,6 @@
 
 .application-form-center {
   width: 100%;
-  max-width: 100%;
 }
 
 .input-group {
@@ -83,9 +61,42 @@
   flex-direction: column;
   align-items: center;
 }
+
+.input-group label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #334155;
+  font-size: 15px;
+  width: 90%;
+  text-align: left;
+}
+
+.input-group input {
+  width: 90%;
+  padding: 14px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: #fafbfc;
+  box-sizing: border-box;
+}
+
+.submit-action-btn {
+  width: 90%;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 20px auto 0 auto;
+  display: block;
+}
+
 .cancel-action-btn {
   width: 90%;
-  max-width: 90%;
   background: #e2e8f0;
   color: #df0b0b;
   padding: 16px 24px;
@@ -95,21 +106,9 @@
   font-size: 16px;
   cursor: pointer;
   margin: 10px auto 0 auto;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 15px rgba(226, 232, 240, 0.3);
   display: block;
 }
-.input-group label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #334155;
-  font-size: 15px;
-  width: 90%;
-  text-align: left;
-}
+
 .apply-error {
   margin-bottom: 16px;
   padding: 12px;
@@ -120,68 +119,9 @@
   text-align: center;
 }
 
-
-.input-group input {
-  width: 90%;
-  padding: 14px 16px;
-  border: 2px solid #e2e8f0;
-  border-radius: 10px;
-  font-size: 15px;
-  color: #1e293b;
-  transition: all 0.3s ease;
-  background-color: #fafbfc;
-  box-sizing: border-box;
-}
-
-.input-group input:focus {
-  outline: none;
-  border-color: #007bff;
-  background-color: #ffffff;
-  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
-}
-
-.input-group input::placeholder {
-  color: #94a3b8;
-  font-size: 14px;
-}
-
-.submit-action-btn {
-  width: 90%;
-  max-width: 90%;
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-  color: white;
-  padding: 16px 24px;
-  border: none;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 20px auto 0 auto;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-  display: block;
-}
-
-.submit-action-btn:hover {
-  background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-}
-
-.submit-action-btn:active {
-  transform: translateY(0);
-}
-
-/* Responsive design */
 @media (max-width: 768px) {
   .glass-form-card {
     padding: 40px 30px;
-  }
-  
-  .job-info-header h1 {
-    font-size: 24px;
   }
 }
 
@@ -189,7 +129,7 @@
   .glass-form-card {
     padding: 30px 20px;
   }
-  
+
   .input-group input {
     padding: 12px 14px;
   }
