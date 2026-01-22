@@ -25,14 +25,10 @@
       </a>
     </ng-container>
 
- 
     <ng-container *ngIf="authService.isLoggedIn()">
-      <button class="nav-btn logout" (click)="logout()">
+      <button class="nav-btn logout" (click)="logout()" [disabled]="authService.disableLogout()">
         Logout
       </button>
     </ng-container>
   </div>
 </nav>
-
-
-  

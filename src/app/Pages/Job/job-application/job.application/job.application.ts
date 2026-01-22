@@ -5,6 +5,7 @@ import { JobApiService } from '../../../../core/Services/api.Service/Job.api.Ser
 import { ApplicationApiService } from '../../../../core/Services/api.Service/Application.api.Service/application.api.service';
 import { CurrencyPipe, CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../../../core/Services/Auth.Service/auth.service';
 
 @Component({
   selector: 'app-job.application',
@@ -27,7 +28,9 @@ export class JobApplication implements OnInit {
     private applicationService: ApplicationApiService,
     private activeRoute: ActivatedRoute,
     private fb: FormBuilder,
+    private authService: AuthService
   ) {
+    this.authService.setLogoutDisabled(true);
     this.applyForm = this.fb.group({
       applicantName: ['', Validators.required],
       applicantEmail: ['', [Validators.required, Validators.email]],
@@ -55,6 +58,9 @@ export class JobApplication implements OnInit {
         },
       });
     }
+  }
+  onDestroy(): void {
+    this.authService.setLogoutDisabled(false);
   }
 
   onSubmitApplication(): void {
@@ -90,6 +96,6 @@ export class JobApplication implements OnInit {
     });
   }
   onCancel(): void {
-    this.router.navigate(['/applicantDashboard']);
+    window.close();
   }
 }

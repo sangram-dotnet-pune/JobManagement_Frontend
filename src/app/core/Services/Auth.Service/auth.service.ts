@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../../Interface/Auth/LoginResponse';
 import { RegisterResponse } from '../../Interface/Auth/RegisterResponse';
@@ -27,4 +27,9 @@ export class AuthService {
    register(FullName: string, email: string, password: string, phone: string, roleId: number): Observable<RegisterResponse> {
    return this.http.post<RegisterResponse>('http://localhost:5055/api/Auth/register', { FullName, email, password ,phone,roleId});
   }
+  disableLogout=signal(false);
+  setLogoutDisabled(value:boolean){
+    this.disableLogout.set(value);
+  }
+  
 }
