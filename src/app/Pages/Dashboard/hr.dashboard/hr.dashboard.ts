@@ -25,6 +25,11 @@ export class HrDashboard {
     route: '/hrDashboard/postJob'
   },
   {
+    label:'shortlisted',
+    icon:'check_circle',
+    route:'/hrDashboard/shortlisted',
+  },
+  {
     label: 'Profile',
     icon: 'person_outline',
     iconClass: 'icon-info',

@@ -33,6 +33,7 @@ export class AppliedJobs implements OnInit {
       next: (res: AppliedJob[]) => {
         this.appliedJobs.set(res);
         this.loading.set(false);
+      
       },
       error: () => {
         this.errorMessage.set('Unable to load applied jobs.');

@@ -5,6 +5,7 @@ import { JobApplication } from '../../../core/Interface/Job/Job';
 import { ApplicationResponse } from '../../../core/Interface/Job/ApplicationResponse';
 import { ApplicantFilterPipe } from './applicant.filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { ApplicationApiService } from '../../../core/Services/api.Service/Application.api.Service/application.api.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ApplicantList {
 
-  constructor(private jobApiService: JobApiService) {}
+  constructor(private jobApiService: JobApiService, private ApplicationApiService: ApplicationApiService) {}
 
   @Input() jobId!: number;
   @Input() jobTitle!: string;
@@ -56,6 +57,30 @@ export class ApplicantList {
       }
     });
   }
+  
+  updateStatus(applicationId: number, status: string) {
+  this.ApplicationApiService
+    .updateApplicationStatus(applicationId, status)
+    .subscribe({
+      next: () => {
+       
+        this.loadApplications(this.jobId);
+
+       
+        if (this.selectedApplication()) {
+          this.selectedApplication.set({
+            ...this.selectedApplication()!,
+            status
+          });
+        }
+      },
+      error: (err) => {
+        console.error('Failed to update status', err);
+        alert('Failed to update application status');
+      }
+    });
+}
+
 
   openFlyoutById(applicationId: number) {
     const fullApplication = this.applications.find(app => app.id === applicationId);
@@ -69,4 +94,5 @@ export class ApplicantList {
     this.isFlyoutOpen.set(false);
     this.selectedApplication.set(null);
   }
+  
 }

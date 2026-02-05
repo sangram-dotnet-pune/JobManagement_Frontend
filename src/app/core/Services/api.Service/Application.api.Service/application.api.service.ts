@@ -19,4 +19,19 @@ export class ApplicationApiService {
   getAppliedJobs(): Observable<AppliedJob[]> {
     return this.http.get<AppliedJob[]>(`${this.baseUrl}/applied`);
   }
+  getMyApplications() {
+  return this.http.get<AppliedJob[]>(`${this.baseUrl}/applicant`);
+}
+getshortlistedCandidates() {
+  return this.http.get<any[]>(`${this.baseUrl}/shortlisted`);
+}
+
+  updateApplicationStatus(applicationId: number, status: string) {
+  return this.http.put(
+    `${this.baseUrl}/${applicationId}/status`,
+    { status }
+  );
+}
+
+
 }

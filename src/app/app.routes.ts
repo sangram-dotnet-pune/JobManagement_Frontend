@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 
-
 import { AuthLogin } from './Pages/Auth/auth.login/auth.login';
 import { AuthRegister } from './Pages/Auth/auth.register/auth.register';
 import { ApplicantDashboard } from './Pages/Dashboard/applicant.dashboard/applicant.dashboard';
@@ -12,6 +11,7 @@ import { HrDashboard } from './Pages/Dashboard/hr.dashboard/hr.dashboard';
 import { JobPage } from './Pages/HR-features/job-page/job-page';
 import { CreateJob } from './Pages/HR-features/Create-application/create.aplication';
 import { routeGuard } from './core/guards/RouteGuard/route-guard';
+import { ShortlistedCandidates } from './Pages/HR-features/shorlisted-candidates/shortlisted-candidates';
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
@@ -26,18 +26,23 @@ export const routes: Routes = [
       { path: 'jobs', component: JobListing },
       { path: 'profile', component: ApplicantProfile },
 
-     
-      { path: 'applied', component: AppliedJobs }
-    ]
-    },{
-       path:'hrDashboard',component:HrDashboard,
-        canActivate: [routeGuard],
-       children:[
-       { path: 'jobs', component: JobPage },
-       {path: 'postJob', component:CreateJob}, 
-      {path: 'profile',component:ApplicantProfile}
-       ]
-    },
-    
-    { path: 'apply/:id', component: JobApplication , canActivate: [routeGuard]}
+      { path: 'applied', component: AppliedJobs },
+    ],
+  },
+  {
+    path: 'hrDashboard',
+    component: HrDashboard,
+    canActivate: [routeGuard],
+    children: [
+      { path: 'jobs', component: JobPage },
+      { path: 'postJob', component: CreateJob },
+      { path: 'profile', component: ApplicantProfile },
+      {
+        path: 'shortlisted',
+        component: ShortlistedCandidates,
+      },
+    ],
+  },
+
+  { path: 'apply/:id', component: JobApplication, canActivate: [routeGuard] },
 ];

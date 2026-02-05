@@ -1,5 +1,4 @@
 <div class="applied-container">
-
   <!-- Loading -->
   <div class="state-msg" *ngIf="loading()">
     <span class="material-icons icon-muted">hourglass_top</span>
@@ -20,16 +19,30 @@
 
   <!-- Applied Jobs List -->
   <div class="job-card" *ngFor="let job of appliedJobs()">
-
     <div class="job-header">
       <h3>
         <span class="material-icons icon-jobs">work_outline</span>
         {{ job.jobTitle }}
       </h3>
 
-      <span class="status-badge">
-        <span class="material-icons icon-info">verified</span>
-        {{ job.status }}
+      <span class="status-badge" [ngClass]="(job.status || 'APPLIED').toLowerCase()">
+        <span class="material-icons">
+          {{
+            job.status === 'APPROVED'
+              ? 'check_circle'
+              : job.status === 'REJECTED'
+                ? 'cancel'
+                : 'schedule'
+          }}
+        </span>
+
+        {{
+          job.status === 'APPROVED'
+            ? 'Shortlisted'
+            : job.status === 'REJECTED'
+              ? 'Rejected'
+              : 'Under Review'
+        }}
       </span>
     </div>
 
@@ -50,9 +63,7 @@
 
     <small class="applied-date">
       <span class="material-icons icon-muted">event</span>
-      Applied on {{ job.appliedAt | date:'mediumDate' }}
+      Applied on {{ job.appliedAt | date: 'mediumDate' }}
     </small>
-
   </div>
-
 </div>

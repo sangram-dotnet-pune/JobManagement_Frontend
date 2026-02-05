@@ -1,0 +1,29 @@
+<div class="applications-container">
+
+  <h2 class="applications-title">
+    Shortlisted Candidates
+  </h2>
+
+  <div
+    class="app-card"
+    *ngFor="let c of shortlisted()">
+
+    <div class="card-header">
+      <h4>{{ c.applicantName }}</h4>
+
+      <span class="status approved">
+        APPROVED
+      </span>
+    </div>
+
+    <p class="email">
+      {{ c.applicantEmail }}
+    </p>
+
+    <span class="job-title">
+      {{ c.jobTitle }}
+    </span>
+
+  </div>
+
+</div>

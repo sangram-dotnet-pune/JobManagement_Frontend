@@ -1,9 +1,6 @@
 <div *ngIf="jobId && jobTitle; else noJob">
-
   <!-- Title -->
-  <h2 class="applications-title">
-    {{ jobTitle }} – Applications
-  </h2>
+  <h2 class="applications-title">{{ jobTitle }} – Applications</h2>
 
   <!-- Search -->
   <div class="search-wrapper">
@@ -29,7 +26,6 @@
       </span>
     </div>
   </div>
-
 </div>
 
 <!-- No Job Selected -->
@@ -38,18 +34,13 @@
 </ng-template>
 
 <!-- Backdrop -->
-<div
-  class="flyout-backdrop"
-  *ngIf="isFlyoutOpen()"
-  (click)="closeFlyout()">
-</div>
+<div class="flyout-backdrop" *ngIf="isFlyoutOpen()" (click)="closeFlyout()"></div>
 
 <!-- Flyout -->
 <div class="flyout" *ngIf="isFlyoutOpen()">
   <button class="close-btn" (click)="closeFlyout()">✕</button>
 
   <ng-container *ngIf="selectedApplication() as app">
-
     <div class="modal-header">
       <h3>{{ app.applicantName }}</h3>
       <span class="badge" [class]="app.status.toLowerCase()">
@@ -72,13 +63,9 @@
 
     <section class="card">
       <h4>Application</h4>
-      <p><b>Applied At:</b> {{ app.appliedAt | date:'medium' }}</p>
+      <p><b>Applied At:</b> {{ app.appliedAt | date: 'medium' }}</p>
 
-      <a
-        *ngIf="app.resumeUrl"
-        [href]="app.resumeUrl"
-        target="_blank"
-        class="resume-link">
+      <a *ngIf="app.resumeUrl" [href]="app.resumeUrl" target="_blank" class="resume-link">
         📎 View Resume
       </a>
 
@@ -88,9 +75,18 @@
     </section>
 
     <div class="actions">
-      <button class="reject">Reject</button>
-      <button class="approve">Approve</button>
-    </div>
+  <button
+    class="reject"
+    (click)="updateStatus(app.id, 'REJECTED')">
+    Reject
+  </button>
+
+  <button
+    class="approve"
+    (click)="updateStatus(app.id, 'APPROVED')">
+    Approve
+  </button>
+</div>
 
   </ng-container>
 </div>
